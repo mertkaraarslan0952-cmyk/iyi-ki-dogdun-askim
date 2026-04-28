@@ -1,126 +1,75 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İyi ki Doğdun ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki Doğdun ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
-    }
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  text-align:center;
+}
 
-    h1 { margin-top: 60px; font-size: 3rem; }
-    p { font-size: 1.2rem; margin: 15px; }
+h1{margin-top:50px;}
 
-    .cake {
-      font-size: 90px;
-      animation: bounce 2s infinite;
-    }
+.slider{
+  width:300px;
+  height:200px;
+  margin:20px auto;
+  overflow:hidden;
+  border-radius:15px;
+}
 
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
+.slider img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
 
-    button {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      background: white;
-      color: #ff4e50;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 15px;
-    }
+.slider img.active{
+  display:block;
+}
 
-    .slider {
-      width: 300px;
-      height: 200px;
-      margin: 30px auto;
-      overflow: hidden;
-      border-radius: 15px;
-    }
-
-    .slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-
-    .slider img.active {
-      display: block;
-    }
-
-    .heart {
-      position: absolute;
-      color: red;
-      font-size: 20px;
-      animation: float 6s linear forwards;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh); opacity: 1; }
-      100% { transform: translateY(-10vh); opacity: 0; }
-    }
-  </style>
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>İyi ki Doğdun <span id="name">Lavinya'm</span> 🎂</h1>
-  <p>Sen hayatımın en güzel tesadüfüsün ❤️</p>
+<h1>İyi ki Doğdun ❤️</h1>
 
-  <div class="cake">🎂</div>
+<div class="slider">
+  <img src="foto1.jpg" class="active">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+</div>
 
-  <button onclick="showMessage()">Mesajımı Aç 💌</button>
-  <p id="hiddenMessage" style="display:none;">Seni çok seviyorum, iyi ki varsın ❤️</p>
+<button onclick="document.getElementById('music').play()">Müzik Aç 🎶</button>
 
-  <div class="slider">
-    <img src="foto1.jpg" class="active">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
-  </div>
+<audio id="music" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
 
-  <audio id="music" loop>
-    <source src="muzik.mp3" type="audio/mpeg">
-  </audio>
+<script>
+const slides=document.querySelectorAll(".slider img");
+let i=0;
 
-  <button onclick="playMusic()">Müziği Başlat 🎶</button>
-
-  <script>
-    const slides = document.querySelectorAll(".slider img");
-    let index = 0;
-
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 2500);
-
-    function showMessage() {
-      document.getElementById("hiddenMessage").style.display = "block";
-    }
-
-    function playMusic() {
-      document.getElementById("music").play();
-    }
-
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 300);
-  </script>
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},2000);
+</script>
 
 </body>
 </html>
