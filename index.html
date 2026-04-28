@@ -24,8 +24,8 @@
     }
 
     @keyframes bounce {
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-15px)}
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
     button {
@@ -39,14 +39,12 @@
       margin-top: 15px;
     }
 
-    /* SLIDER */
     .slider {
       width: 300px;
       height: 200px;
       margin: 30px auto;
       overflow: hidden;
       border-radius: 15px;
-      position: relative;
     }
 
     .slider img {
@@ -60,19 +58,17 @@
       display: block;
     }
 
-    /* KALPLER */
     .heart {
       position: absolute;
       color: red;
-      animation: float 6s linear forwards;
       font-size: 20px;
+      animation: float 6s linear forwards;
     }
 
     @keyframes float {
       0% { transform: translateY(100vh); opacity: 1; }
       100% { transform: translateY(-10vh); opacity: 0; }
     }
-
   </style>
 </head>
 
@@ -86,14 +82,12 @@
   <button onclick="showMessage()">Mesajımı Aç 💌</button>
   <p id="hiddenMessage" style="display:none;">Seni çok seviyorum, iyi ki varsın ❤️</p>
 
-  <!-- SLIDER -->
   <div class="slider">
     <img src="foto1.jpg" class="active">
     <img src="foto2.jpg">
     <img src="foto3.jpg">
   </div>
 
-  <!-- MÜZİK -->
   <audio id="music" loop>
     <source src="muzik.mp3" type="audio/mpeg">
   </audio>
@@ -101,36 +95,31 @@
   <button onclick="playMusic()">Müziği Başlat 🎶</button>
 
   <script>
-    function showMessage() {
-      document.getElementById('hiddenMessage').style.display = 'block';
-    }
-
-    function playMusic() {
-      document.getElementById('music').play();
-    }
-
-    // KALPLER
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = '❤️';
-      heart.style.left = Math.random() * 100 + 'vw';
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createHeart, 300);
-
-    // SLIDER (daha stabil)
-    const slides = document.querySelectorAll('.slider img');
+    const slides = document.querySelectorAll(".slider img");
     let index = 0;
 
     setInterval(() => {
-      slides[index].classList.remove('active');
+      slides[index].classList.remove("active");
       index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
+      slides[index].classList.add("active");
     }, 2500);
+
+    function showMessage() {
+      document.getElementById("hiddenMessage").style.display = "block";
+    }
+
+    function playMusic() {
+      document.getElementById("music").play();
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
   </script>
 
 </body>
