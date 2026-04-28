@@ -39,6 +39,28 @@
       margin-top: 15px;
     }
 
+    /* SLIDER */
+    .slider {
+      width: 300px;
+      height: 200px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slider img.active {
+      display: block;
+    }
+
+    /* KALPLER */
     .heart {
       position: absolute;
       color: red;
@@ -51,22 +73,6 @@
       100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    .slider {
-      width: 300px;
-      height: 200px;
-      margin: 30px auto;
-      overflow: hidden;
-      border-radius: 15px;
-    }
-
-    .slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-
-    .active { display: block; }
   </style>
 </head>
 
@@ -82,14 +88,14 @@
 
   <!-- SLIDER -->
   <div class="slider">
-    <img src="./foto1.jpg" class="active">
-    <img src="./foto2.jpg">
-    <img src="./foto3.jpg">
+    <img src="foto1.jpg" class="active">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
   </div>
 
   <!-- MÜZİK -->
   <audio id="music" loop>
-    <source src="./muzik.mp3" type="audio/mpeg">
+    <source src="muzik.mp3" type="audio/mpeg">
   </audio>
 
   <button onclick="playMusic()">Müziği Başlat 🎶</button>
@@ -100,12 +106,10 @@
     }
 
     function playMusic() {
-      const music = document.getElementById('music');
-      music.volume = 0.5;
-      music.play();
+      document.getElementById('music').play();
     }
 
-    // Kalpler
+    // KALPLER
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
@@ -116,19 +120,17 @@
       setTimeout(() => heart.remove(), 6000);
     }
 
-    setInterval(createHeart, 500);
+    setInterval(createHeart, 300);
 
-    // Slider
-    document.addEventListener("DOMContentLoaded", () => {
-      let index = 0;
-      const slides = document.querySelectorAll('.slider img');
+    // SLIDER (daha stabil)
+    const slides = document.querySelectorAll('.slider img');
+    let index = 0;
 
-      setInterval(() => {
-        slides[index].classList.remove('active');
-        index = (index + 1) % slides.length;
-        slides[index].classList.add('active');
-      }, 2000);
-    });
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 2500);
   </script>
 
 </body>
